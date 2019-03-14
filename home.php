@@ -48,8 +48,34 @@ $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
    <a href="logout.php?logout"><button type="" class="btn btn-danger">Sign Out</button></a>
  
 </div>
-          
-           
+
+<div class="container">
+  <h2>Select Car</h2>
+  <p>The form below contains two dropdown menus (select lists):</p>
+  <form>
+    <div class="form-group">
+      <label for="sel1">Select a Model:</label>
+      <select class="form-control" id="sel1">
+        <?php
+        $sql = "SELECT Model FROM car";
+		$result = $conn->query($sql);
+			if ($result->num_rows > 0) {
+	   		 while($row = $result->fetch_assoc()) {
+	   		 echo "<option>".$row['Model']."</option>";
+	   		 }
+		}
+		?>
+		<option></option>
+      </select>
+      <br>
+      <label for="sel2">Select a type</label>
+      <select multiple class="form-control" id="sel2">
+        <option></option>
+      </select>
+      <<button type="">Check Availability</button>
+    </div>
+  </form>
+</div>
       
  
 </body>
