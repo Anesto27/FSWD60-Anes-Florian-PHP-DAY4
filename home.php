@@ -16,13 +16,41 @@ $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
 <html>
 <head>
 <title>Welcome - <?php echo $userRow['userEmail']; ?></title>
+<!-- Latest compiled and minified CSS -->
+<script
+  src="http://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<style>
+	.btn{
+		position: absolute;
+		left: 90%;
+		transform: translateY(-10%);
+	}
+	a.alert-link{
+		text-align: center;
+	}
+
+</style>
 </head>
 <body>
-           Hi <?php echo $userRow['userEmail']; ?>
-           
-           <a href="logout.php?logout">Sign Out</a>
+	<div class="alert alert-info" role="alert">
+  <a href="#" class="alert-link"> Welcome <?php echo $userRow['userName'] ." to our Booking-Page!";?></a>
+   <a href="logout.php?logout"><button type="" class="btn btn-danger">Sign Out</button></a>
  
-       
+</div>
+          
+           
+      
  
 </body>
 </html>
