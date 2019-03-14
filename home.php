@@ -11,6 +11,25 @@ if( !isset($_SESSION['user']) ) {
 // select logged-in users details
 $res=mysqli_query($conn, "SELECT * FROM users WHERE userId=".$_SESSION['user']);
 $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
+
+
+if(isset($_GET["id"])){
+	$id = $_GET["id"];
+	$fk_user = $_SESSION["user"];
+
+	echo "<form method='post'><input type='date' name='td'><input type='date' name='bd'><input type='submit' name='submitbook'> </form>";
+
+	if(isset($_POST["submitbook"])){
+		$takedate= $_POST["td"];
+		$backdate= $_POST["bd"];
+
+		$sql = "insert into booking (TakeDate ,	BackDate 	,CarId 	,userId) values ('$takedate','$backdate',$id,$fk_user)";
+		mysqli_query($conn,$sql);
+	}
+
+
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -54,31 +73,19 @@ $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
   <form>
     <div class="form-group">
       <label for="sel1">Select a Model:</label>
-      <select class="form-control" id="sel1">
+        <table>
         <?php
-        $sql = "SELECT DISTINCT Model FROM car";
+        $sql = "SELECT Model, Type,CarId FROM car";
 		$result = $conn->query($sql);
 			if ($result->num_rows > 0) {
 	   		 while($row = $result->fetch_assoc()) {
-	   		 echo "<option>".$row['Model']."</option>";
+	   		 echo "<tr><td>".$row['Model']." ".$row['Type']."</td><td><a href='home.php?id=".$row['CarId']."'>Book me</a></td></tr>";
 	   		 }
 		}
 		?>
-		<option></option>
-      </select>
+		</table>
+	 
       <br>
-      <label for="se1">Select a type</label>
-      <select class="form-control" id="sel">
-        <?php
-        $sql = "SELECT Type FROM car";
-		$result = $conn->query($sql);
-			if ($result->num_rows > 0) {
-	   		 while($row = $result->fetch_assoc()) {
-	   		 echo "<option>".$row['Type']."</option>";
-	   		 }
-		}
-		?>
-      </select>
       <button type="">Check Availability</button>
     </div>
   </form>
