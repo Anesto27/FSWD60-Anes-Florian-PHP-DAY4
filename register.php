@@ -6,6 +6,12 @@ if( isset($_SESSION['user'])!="" ){
 }
 include_once 'dbconnect.php';
 $error = false;
+$nameError="";
+$emailError="";
+$passError="";
+$name="";
+$email="";
+
 if ( isset($_POST['btn-signup']) ) {
  
       // sanitize user input to prevent sql injection

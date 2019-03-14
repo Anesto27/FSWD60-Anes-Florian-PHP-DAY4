@@ -2,6 +2,11 @@
 ob_start();
 session_start();
 require_once 'dbconnect.php';
+$nameError="";
+$emailError="";
+$passError="";
+$name="";
+$email="";
 
 // it will never let you open index(login) page if session is set
 if ( isset($_SESSION['user'])!="" ) {
